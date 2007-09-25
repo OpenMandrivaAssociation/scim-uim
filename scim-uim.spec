@@ -1,5 +1,5 @@
 %define version   0.2.0
-%define release   %mkrel 1
+%define release   %mkrel 2
 
 %define scim_version   1.4.1
 %define uim_version    1.1.0
@@ -21,7 +21,7 @@ Requires:        scim >= %{scim_version}
 Requires:        uim >= %{uim_version}
 BuildRequires:   scim-devel >= %{scim_version}
 BuildRequires:   libuim-devel >= %{uim_version}
-BuildRequires:   automake1.9
+BuildRequires:   automake
 BuildRequires:   m17n-lib-devel
 
 %description
@@ -39,18 +39,9 @@ Scim-uim library.
 
 %prep
 %setup -q
-cp /usr/share/automake-1.9/mkinstalldirs .
 
 %build
-if [[ ! -x configure ]]; then
-# (cjw) do not use bootstrap script directly - it runs "aclocal" and "automake"
-  libtoolize --copy --force --automake 
-  aclocal-1.9
-  autoheader
-  automake-1.9 --add-missing --copy --include-deps
-  autoconf
-fi
-
+./bootstrap
 %configure2_5x --disable-static
 %make
 
@@ -66,7 +57,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %post -n %{libname} -p /sbin/ldconfig
 %postun -n %{libname} -p /sbin/ldconfig
-
 
 %files
 %defattr(-,root,root)
