@@ -20,7 +20,7 @@ Requires:        %{libname} = %{version}-%{release}
 Requires:        scim >= %{scim_version}
 Requires:        uim >= %{uim_version}
 BuildRequires:   scim-devel >= %{scim_version}
-BuildRequires:   libuim-devel >= %{uim_version}
+BuildRequires:   uim-devel >= %{uim_version}
 BuildRequires:   automake
 BuildRequires:   m17n-lib-devel
 
@@ -50,7 +50,7 @@ rm -rf $RPM_BUILD_ROOT
 %makeinstall_std
 
 # remove unneeded files
-rm -f %{buildroot}/%{_libdir}/scim-1.0/*/*/*.{a,la}
+rm -f %{buildroot}%scim_plugins_dir/*/*.{a,la}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -66,4 +66,4 @@ rm -rf $RPM_BUILD_ROOT
 %files -n %{libname}
 %defattr(-,root,root)
 %doc COPYING
-%{_libdir}/scim-1.0/*/IMEngine/*.so
+%scim_plugins_dir/IMEngine/*.so
