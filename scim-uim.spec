@@ -15,6 +15,7 @@ Group:     System/Internationalization
 License:   GPL
 URL:       http://www.scim-im.org/
 Source0:   %{name}-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires:        %{libname} = %{version}-%{release}
 Requires:        scim >= %{scim_version}
 Requires:        uim >= %{uim_version}
