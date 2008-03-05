@@ -1,5 +1,4 @@
 %define version   0.2.0
-%define release   %mkrel 2
 
 %define scim_version   1.4.1
 %define uim_version    1.1.0
@@ -10,7 +9,7 @@
 Name:      scim-uim
 Summary:   A wrapper for uim
 Version:   %{version}
-Release:   %{release}
+Release:   %mkrel 3
 Group:     System/Internationalization
 License:   GPL
 URL:       http://www.scim-im.org/
