@@ -9,7 +9,7 @@
 Name:      scim-uim
 Summary:   A wrapper for uim
 Version:   %{version}
-Release:   %mkrel 3
+Release:   %mkrel 4
 Group:     System/Internationalization
 License:   GPL
 URL:       http://www.scim-im.org/
