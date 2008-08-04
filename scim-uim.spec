@@ -1,7 +1,7 @@
 %define version   0.2.0
 
 %define scim_version   1.4.1
-%define uim_version    1.1.0
+%define uim_version    1.5.0
 
 %define libname_orig lib%{name}
 %define libname %mklibname %{name} 0
@@ -11,33 +11,25 @@ Summary:   A wrapper for uim
 Version:   %{version}
 Release:   %mkrel 4
 Group:     System/Internationalization
-License:   GPL
+License:   GPLv2+
 URL:       http://www.scim-im.org/
 Source0:   %{name}-%{version}.tar.gz
+Patch1: scim-uim-0.2.0-uim-1.5.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires:        %{libname} = %{version}-%{release}
 Requires:        scim >= %{scim_version}
 Requires:        uim >= %{uim_version}
 BuildRequires:   scim-devel >= %{scim_version}
 BuildRequires:   uim-devel >= %{uim_version}
 BuildRequires:   automake
 BuildRequires:   m17n-lib-devel
+Obsoletes:	%{libname}
 
 %description
 A wrapper for uim.
 
-
-%package -n %{libname}
-Summary:    Scim-uim library
-Group:      System/Internationalization
-Provides:   %{libname_orig} = %{version}-%{release}
-
-%description -n %{libname}
-Scim-uim library.
-
-
 %prep
 %setup -q
+%patch1 -p1
 
 %build
 ./bootstrap
@@ -54,19 +46,8 @@ rm -f %{buildroot}%scim_plugins_dir/*/*.{a,la}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
 %files
 %defattr(-,root,root)
 %doc AUTHORS COPYING
 %{_datadir}/scim/icons/*
-
-%files -n %{libname}
-%defattr(-,root,root)
-%doc COPYING
 %scim_plugins_dir/IMEngine/*.so
