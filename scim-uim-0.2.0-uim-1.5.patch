@@ -1,0 +1,21 @@
+diff -Nru scim-uim-0.2.0-orig/src/scim_uim_imengine.cpp scim-uim-0.2.0/src/scim_uim_imengine.cpp
+--- scim-uim-0.2.0-orig/src/scim_uim_imengine.cpp	2007-04-10 14:43:59.000000000 +0900
++++ scim-uim-0.2.0/src/scim_uim_imengine.cpp	2008-07-18 23:15:14.000000000 +0900
+@@ -27,6 +27,7 @@
+ #define Uses_SCIM_IMENGINE
+ #define Uses_SCIM_LOOKUP_TABLE
+ #define Uses_SCIM_CONFIG_BASE
++#define Uses_C_STRING
+ 
+ #ifdef HAVE_CONFIG_H
+   #include <config.h>
+@@ -34,7 +35,8 @@
+ 
+ #include <scim.h>
+ #include "scim_uim_imengine.h"
+-#include <uim/uim-compat-scm.h>
++#include <uim/uim-scm.h>
++#include <uim/uim-util.h>
+ 
+ #define scim_module_init uim_LTX_scim_module_init
+ #define scim_module_exit uim_LTX_scim_module_exit
