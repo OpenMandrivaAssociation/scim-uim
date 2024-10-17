@@ -12,7 +12,7 @@ Version:   %{version}
 Release:   %mkrel 4
 Group:     System/Internationalization
 License:   GPLv2+
-URL:       http://www.scim-im.org/
+URL:       https://www.scim-im.org/
 Source0:   %{name}-%{version}.tar.gz
 Patch1: scim-uim-0.2.0-uim-1.5.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
